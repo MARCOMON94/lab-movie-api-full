@@ -21,7 +21,7 @@ router.get('/:id/resenas', listarResenas)
 router.post('/:id/resenas', verificarToken, crearResena)
 
 router.get('/:id', obtenerPelicula)
-router.post('/', verificarToken, verificarRol('admin'), crearPelicula)
+router.post('/', verificarToken, crearPelicula)
 router.put('/:id', verificarToken, verificarRol('admin'), actualizarPelicula)
 router.delete('/:id', verificarToken, verificarRol('admin'), eliminarPelicula)
 

@@ -2,6 +2,8 @@ const request = require('supertest')
 const app = require('../../index')
 const { crearUsuario, crearPelicula } = require('./helpers')
 
+const sufijo = () => `${Date.now()}-${Math.floor(Math.random() * 100000)}`
+
 describe('Favoritos', () => {
   describe('POST /api/favoritos/:peliculaId', () => {
     it('debe añadir una película a favoritos (201)', async () => {
@@ -14,7 +16,7 @@ describe('Favoritos', () => {
 
       expect(res.status).toBe(201)
       expect(res.body).toHaveProperty('ok', true)
-      expect(res.body.favorito).toHaveProperty('pelicula_id', pelicula.id)
+      expect(res.body.favorito).toHaveProperty('peliculaId', pelicula.id)
     })
 
     it('debe devolver 401 sin token', async () => {
@@ -30,7 +32,7 @@ describe('Favoritos', () => {
       const { token } = await crearUsuario()
 
       const res = await request(app)
-        .post('/api/favoritos/99999')
+        .post('/api/favoritos/999999')
         .set('Authorization', `Bearer ${token}`)
 
       expect(res.status).toBe(404)
@@ -84,8 +86,8 @@ describe('Favoritos', () => {
   describe('GET /api/favoritos', () => {
     it('debe devolver los favoritos del usuario autenticado', async () => {
       const { token } = await crearUsuario()
-      const pelicula1 = await crearPelicula({ titulo: 'Peli 1' })
-      const pelicula2 = await crearPelicula({ titulo: 'Peli 2' })
+      const pelicula1 = await crearPelicula({ titulo: `Peli 1 ${sufijo()}` })
+      const pelicula2 = await crearPelicula({ titulo: `Peli 2 ${sufijo()}` })
 
       await request(app)
         .post(`/api/favoritos/${pelicula1.id}`)
@@ -105,9 +107,19 @@ describe('Favoritos', () => {
     })
 
     it('los favoritos de un usuario no incluyen los de otro', async () => {
-      const { token: token1 } = await crearUsuario({ email: 'user1@test.com' })
-      const { token: token2 } = await crearUsuario({ email: 'user2@test.com' })
-      const pelicula = await crearPelicula()
+      const id = sufijo()
+
+      const { token: token1 } = await crearUsuario({
+        email: `user1-${id}@test.com`
+      })
+
+      const { token: token2 } = await crearUsuario({
+        email: `user2-${id}@test.com`
+      })
+
+      const pelicula = await crearPelicula({
+        titulo: `Pelicula compartida ${id}`
+      })
 
       await request(app)
         .post(`/api/favoritos/${pelicula.id}`)

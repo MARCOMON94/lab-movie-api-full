@@ -1,49 +1,110 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const pool = require('../config/db')
+const prisma = require('../config/prisma')
+
+const generarSufijo = () => `${Date.now()}-${Math.floor(Math.random() * 100000)}`
 
 const crearUsuario = async ({
-  nombre = 'Test User',
-  email = 'test@test.com',
-  password = 'pass123',
+  nombre = 'Usuario Test',
+  email,
+  password = 'admin123',
   rol = 'usuario'
 } = {}) => {
-  const password_hash = await bcrypt.hash(password, 10)
+  const sufijo = generarSufijo()
+  const emailFinal = email || `usuario-${sufijo}@test.com`
+  const passwordHash = await bcrypt.hash(password, 10)
 
-  const { rows } = await pool.query(
-    `INSERT INTO usuarios (nombre, email, password_hash, rol)
-     VALUES ($1, $2, $3, $4)
-     RETURNING id, nombre, email, rol`,
-    [nombre, email, password_hash, rol]
-  )
-
-  const usuario = rows[0]
+  const usuario = await prisma.usuario.create({
+    data: {
+      nombre,
+      email: emailFinal,
+      passwordHash,
+      rol
+    }
+  })
 
   const token = jwt.sign(
-    { id: usuario.id, email: usuario.email, rol: usuario.rol },
-    process.env.JWT_SECRET || 'test-secret',
-    { expiresIn: '1h' }
+    {
+      id: usuario.id,
+      email: usuario.email,
+      rol: usuario.rol
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: '1h'
+    }
   )
 
-  return { usuario, token }
+  return {
+    usuario,
+    token,
+    password
+  }
+}
+
+const crearDirector = async ({
+  nombre
+} = {}) => {
+  const sufijo = generarSufijo()
+
+  return prisma.director.create({
+    data: {
+      nombre: nombre || `Director Test ${sufijo}`
+    }
+  })
+}
+
+const crearGenero = async ({
+  nombre,
+  slug
+} = {}) => {
+  const sufijo = generarSufijo()
+
+  return prisma.genero.create({
+    data: {
+      nombre: nombre || `Genero Test ${sufijo}`,
+      slug: slug || `genero-test-${sufijo}`
+    }
+  })
 }
 
 const crearPelicula = async ({
-  titulo = 'Película Test',
+  titulo,
   anio = 2024,
-  nota = 8.0
+  nota = 8.0,
+  directorNombre,
+  generoNombre,
+  generoSlug
 } = {}) => {
-  const { rows } = await pool.query(
-    `INSERT INTO peliculas (titulo, anio, nota)
-     VALUES ($1, $2, $3)
-     RETURNING *`,
-    [titulo, anio, nota]
-  )
+  const sufijo = generarSufijo()
 
-  return rows[0]
+  const director = await crearDirector({
+    nombre: directorNombre || `Director Pelicula ${sufijo}`
+  })
+
+  const genero = await crearGenero({
+    nombre: generoNombre || `Genero Pelicula ${sufijo}`,
+    slug: generoSlug || `genero-pelicula-${sufijo}`
+  })
+
+  return prisma.pelicula.create({
+    data: {
+      titulo: titulo || `Pelicula Test ${sufijo}`,
+      anio,
+      nota,
+      directorId: director.id,
+      generoId: genero.id
+    },
+    include: {
+      director: true,
+      genero: true
+    }
+  })
 }
 
 module.exports = {
   crearUsuario,
+  crearDirector,
+  crearGenero,
   crearPelicula
 }
