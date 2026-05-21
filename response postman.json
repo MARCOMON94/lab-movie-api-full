@@ -1,0 +1,27 @@
+{"error":"Ya existe un usuario con ese email"}
+
+{"mensaje":"Login correcto","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImVtYWlsIjoiYWRtaW5AY2luZS5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTc3OTM1MTcyMywiZXhwIjoxNzc5NDM4MTIzfQ.Z2ik1q8o1u_nW-HDrkTUq1RqyGDnV95hafiGUnUD6Mo","usuario":{"id":15,"nombre":"Admin","email":"admin@cine.com","rol":"admin"}}
+
+{"id":15,"nombre":"Admin","email":"admin@cine.com","rol":"admin","createdAt":"2026-05-20T16:23:35.188Z"}
+
+{"data":[{"id":25,"titulo":"Pelicula compartida 1779292760778-83737","anio":2024,"nota":"8","directorId":25,"generoId":25,"createdAt":"2026-05-20T15:59:20.889Z","destacada":false,"director":{"nombre":"Director Pelicula 1779292760886-59174"},"genero":{"nombre":"Genero Pelicula 1779292760886-59174","slug":"genero-pelicula-1779292760886-59174"},"_count":{"resenas":0}},{"id":24,"titulo":"Peli 2 1779292760754-29068","anio":2024,"nota":"8","directorId":24,"generoId":24,"createdAt":"2026-05-20T15:59:20.756Z","destacada":false,"director":{"nombre":"Director Pelicula 1779292760754-16126"},"genero":{"nombre":"Genero Pelicula 1779292760754-16126","slug":"genero-pelicula-1779292760754-16126"},"_count":{"resenas":0}},{"id":23,"titulo":"Peli 1 1779292760750-82467","anio":2024,"nota":"8","directorId":23,"generoId":23,"createdAt":"2026-05-20T15:59:20.752Z","destacada":false,"director":{"nombre":"Director Pelicula 1779292760750-36193"},"genero":{"nombre":"Genero Pelicula 1779292760750-36193","slug":"genero-pelicula-1779292760750-36193"},"_count":{"resenas":0}},{"id":22,"titulo":"Pelicula Test 1779292760690-47693","anio":2024,"nota":"8","directorId":22,"generoId":22,"createdAt":"2026-05-20T15:59:20.692Z","destacada":false,"director":{"nombre":"Director Pelicula 1779292760690-47693"},"genero":{"nombre":"Genero Pelicula 1779292760690-47693","slug":"genero-pelicula-1779292760690-47693"},"_count":{"resenas":0}},{"id":21,"titulo":"Pelicula Test 1779292760615-44785","anio":2024,"nota":"8","directorId":21,"generoId":21,"createdAt":"2026-05-20T15:59:20.618Z","destacada":false,"director":{"nombre":"Director Pelicula 1779292760615-44785"},"genero":{"nombre":"Genero Pelicula 1779292760615-44785","slug":"genero-pelicula-1779292760615-44785"},"_count":{"resenas":0}},{"id":20,"titulo":"Pelicula Actualizada Admin","anio":2024,"nota":"8","directorId":20,"generoId":20,"createdAt":"2026-05-20T15:59:20.571Z","destacada":false,"director":{"nombre":"Director Pelicula 1779292760569-50454"},"genero":{"nombre":"Genero Pelicula 1779292760569-50454","slug":"genero-pelicula-1779292760569-50454"},"_count":{"resenas":0}},{"id":19,"titulo":"Pelicula Test 1779292760506-83732","anio":2024,"nota":"8","directorId":19,"generoId":19,"createdAt":"2026-05-20T15:59:20.508Z","destacada":false,"director":{"nombre":"Director Pelicula 1779292760506-83732"},"genero":{"nombre":"Genero Pelicula 1779292760506-83732","slug":"genero-pelicula-1779292760506-83732"},"_count":{"resenas":0}},{"id":18,"titulo":"Pelicula Creada 1779292760412","anio":2026,"nota":"8.4","directorId":18,"generoId":18,"createdAt":"2026-05-20T15:59:20.442Z","destacada":false,"director":{"nombre":"Director Creado 1779292760412"},"genero":{"nombre":"Genero Test 1779292760409-41942","slug":"genero-test-1779292760409-41942"},"_count":{"resenas":0}},{"id":17,"titulo":"Pelicula Test 1779292760407-34669","anio":2024,"nota":"8","directorId":17,"generoId":17,"createdAt":"2026-05-20T15:59:20.411Z","destacada":false,"director":{"nombre":"Director Pelicula 1779292760407-34669"},"genero":{"nombre":"Genero Pelicula 1779292760407-34669","slug":"genero-pelicula-1779292760407-34669"},"_count":{"resenas":0}},{"id":16,"titulo":"Pelicula Test 1779292760285-85100","anio":2024,"nota":"8","directorId":16,"generoId":16,"createdAt":"2026-05-20T15:59:20.288Z","destacada":false,"director":{"nombre":"Director Pelicula 1779292760285-85100"},"genero":{"nombre":"Genero Pelicula 1779292760285-85100","slug":"genero-pelicula-1779292760285-85100"},"_count":{"resenas":0}}],"total":25,"pagina":1,"totalPaginas":3}
+
+{"data":[],"total":0,"pagina":1,"totalPaginas":0}
+
+{"error":"Película no encontrada"}
+
+{"id":30,"titulo":"Arrival","anio":2016,"nota":"7.9","directorId":26,"generoId":null,"createdAt":"2026-05-21T08:23:17.352Z","destacada":false,"director":{"id":26,"nombre":"Denis Villeneuve"},"genero":null}
+
+{"error":"Película no encontrada"}
+
+{"error":"Película no encontrada"}
+
+{"mensaje":"Película actualizada correctamente"}
+
+{"error":"Película no encontrada"}
+
+{"mensaje":"Película eliminada correctamente"}
+
+{"error":"Película no encontrada"}
+
+{"contexto":"Tienes 29 películas en tu sistema.","peliculas":[],"metadata":{"total_encontradas":0,"filtros_aplicados":{"generos":["ciencia-ficcion"],"nota_minima":7.5,"excluidas":0}}}
